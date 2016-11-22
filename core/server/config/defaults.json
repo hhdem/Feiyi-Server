@@ -7,10 +7,14 @@
         "port": 2368
     },
     "database": {
-        "client": "sqlite3",
+        "client": "mysql",
         "debug": false,
         "connection": {
-            "filename": "content/data/ghost.db"
+            "host": "127.0.0.1",
+            "user": "root",
+            "password":"521345",
+            "database": "ghost_db",
+            "charset":"utf-8"
         }
     },
     "privacy": false,
@@ -26,8 +30,7 @@
         "active": "SchedulingDefault"
     },
     "auth": {
-        "type": "ghost",
-        "url": "http://devauth.ghost.org:8080"
+        "type": "password"
     },
     "logging": {
         "level": "info",
