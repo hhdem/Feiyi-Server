@@ -1,5 +1,5 @@
 {
-    "url": "http://andreally.com",
+    "url": "http://www.andreally.com",
     "database": {
         "connection": {
             "filename": "content/data/ghost.db"
