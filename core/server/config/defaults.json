@@ -3,7 +3,7 @@
     "urlSSL": false,
     "forceAdminSSL": false,
     "server": {
-        "host": "127.0.0.1",
+        "host": "47.90.62.102",
         "port": 80
     },
     "database": {

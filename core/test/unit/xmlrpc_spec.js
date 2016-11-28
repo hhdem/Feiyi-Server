@@ -28,7 +28,7 @@ describe('XMLRPC', function () {
         configUtils.restore();
         nock.cleanAll();
     });
-
+    // Test
     it('listen() should initialise event correctly', function () {
         xmlrpc.listen();
         eventStub.calledOnce.should.be.true();
