@@ -64,5 +64,16 @@
     },
     "maintenance": {
         "enabled": false
+    },
+    "mail": {
+        "transport": "SMTP",
+        "from": "hhdem@qq.com",
+        "host": "smtp.qq.com",
+        "options": {
+            "auth": {
+                "user": "hhdem@qq.com",
+                "pass": "5213songshanshan"
+            }
+        }
     }
 }
