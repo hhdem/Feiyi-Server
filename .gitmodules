@@ -1,6 +1,6 @@
 [submodule "content/themes/casper"]
 	path = content/themes/casper
-	url = https://github.com/hhdem/Casper.git
+	url = https://github.com/hhdem/Feiyi-Theme.git
 [submodule "core/client"]
 	path = core/client
-	url = https://github.com/hhdem/Ghost-Admin.git
+	url = https://github.com/hhdem/Feiyi-Admin.git
