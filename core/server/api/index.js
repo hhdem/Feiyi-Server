@@ -19,6 +19,7 @@ var _              = require('lodash'),
     settings       = require('./settings'),
     tags           = require('./tags'),
     categories     = require('./categories'),
+    areas           = require('./areas'),
     invites        = require('./invites'),
     clients        = require('./clients'),
     users          = require('./users'),
@@ -75,7 +76,7 @@ cacheInvalidationHeader = function cacheInvalidationHeader(req, result) {
         if (endpoint === 'schedules' && subdir === 'posts') {
             return INVALIDATE_ALL;
         }
-        if (['settings', 'users', 'db', 'tags'].indexOf(endpoint) > -1) {
+        if (['settings', 'users', 'db', 'tags', 'areas', 'categories'].indexOf(endpoint) > -1) {
             return INVALIDATE_ALL;
         } else if (endpoint === 'posts') {
             if (method === 'DELETE') {
@@ -131,6 +132,12 @@ locationHeader = function locationHeader(req, result) {
         } else if (result.hasOwnProperty('tags')) {
             newObject = result.tags[0];
             location = utils.url.urlJoin(apiRoot, 'tags', newObject.id, '/');
+        } else if (result.hasOwnProperty('categories')) {
+            newObject = result.categories[0];
+            location = utils.url.urlJoin(apiRoot, 'categories', newObject.id, '/');
+        } else if (result.hasOwnProperty('areas')) {
+            newObject = result.areas[0];
+            location = utils.url.urlJoin(apiRoot, 'areas', newObject.id, '/');
         }
     }
 
@@ -280,6 +287,7 @@ module.exports = {
     settings: settings,
     tags: tags,
     categories: categories,
+    areas: areas,
     clients: clients,
     users: users,
     slugs: slugs,

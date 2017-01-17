@@ -1,5 +1,5 @@
-// # Category API
-// RESTful API for the Category resource
+// # Area API
+// RESTful API for the Area resource
 var Promise      = require('bluebird'),
     _            = require('lodash'),
     dataProvider = require('../models'),
@@ -8,20 +8,20 @@ var Promise      = require('bluebird'),
     pipeline     = require('../utils/pipeline'),
     i18n         = require('../i18n'),
 
-    docName      = 'categories',
-    allowedIncludes = ['count.posts'],
-    categories;
+    docName      = 'areas',
+    allowedIncludes = ['count.posts', 'count.areas', 'parent'],
+    areas;
 
 /**
- * ### Categorys API Methods
+ * ### Areas API Methods
  *
  * **See:** [API Methods](index.js.html#api%20methods)
  */
-categories = {
+areas = {
     /**
      * ## Browse
      * @param {{context}} options
-     * @returns {Promise<Categorys>} Categorys Collection
+     * @returns {Promise<Areas>} Areas Collection
      */
     browse: function browse(options) {
         var tasks;
@@ -33,7 +33,8 @@ categories = {
          * @returns {Object} options
          */
         function doQuery(options) {
-            return dataProvider.Category.findPage(options);
+            // options.filter = 'id:-1';
+            return dataProvider.Area.findPage(options);
         }
 
         // Push all of our tasks into a `tasks` array in the correct order
@@ -45,13 +46,15 @@ categories = {
         ];
 
         // Pipeline calls each task passing the result of one to be the arguments for the next
-        return pipeline(tasks, options);
+        return pipeline(tasks, options).then(function formatResponse(result) {
+            return result;
+        });
     },
 
     /**
      * ## Read
      * @param {{id}} options
-     * @return {Promise<Category>} Category
+     * @return {Promise<Area>} Area
      */
     read: function read(options) {
         var attrs = ['id', 'slug', 'visibility'],
@@ -64,7 +67,8 @@ categories = {
          * @returns {Object} options
          */
         function doQuery(options) {
-            return dataProvider.Category.findOne(options.data, _.omit(options, ['data']));
+            options.filter = 'id:-1';
+            return dataProvider.Area.findOne(options, _.omit(options, ['data']));
         }
 
         // Push all of our tasks into a `tasks` array in the correct order
@@ -78,17 +82,17 @@ categories = {
         // Pipeline calls each task passing the result of one to be the arguments for the next
         return pipeline(tasks, options).then(function formatResponse(result) {
             if (result) {
-                return {categories: [result.toJSON(options)]};
+                return {areas: [result.toJSON(options)]};
             }
 
-            return Promise.reject(new errors.NotFoundError({message: i18n.t('errors.api.categories.categoryNotFound')}));
+            return Promise.reject(new errors.NotFoundError({message: i18n.t('errors.api.areas.areaNotFound')}));
         });
     },
 
     /**
      * ## Add
-     * @param {Category} object the category to create
-     * @returns {Promise(Category)} Newly created Category
+     * @param {Area} object the area to create
+     * @returns {Promise(Area)} Newly created Area
      */
     add: function add(object, options) {
         var tasks;
@@ -100,7 +104,7 @@ categories = {
          * @returns {Object} options
          */
         function doQuery(options) {
-            return dataProvider.Category.add(options.data.categories[0], _.omit(options, ['data']));
+            return dataProvider.Area.add(options.data.areas[0], _.omit(options, ['data']));
         }
 
         // Push all of our tasks into a `tasks` array in the correct order
@@ -113,9 +117,9 @@ categories = {
 
         // Pipeline calls each task passing the result of one to be the arguments for the next
         return pipeline(tasks, object, options).then(function formatResponse(result) {
-            var category = result.toJSON(options);
+            var area = result.toJSON(options);
 
-            return {categories: [category]};
+            return {areas: [area]};
         });
     },
 
@@ -123,9 +127,9 @@ categories = {
      * ## Edit
      *
      * @public
-     * @param {Category} object Category or specific properties to update
+     * @param {Area} object Area or specific properties to update
      * @param {{id, context, include}} options
-     * @return {Promise<Category>} Edited Category
+     * @return {Promise<Area>} Edited Area
      */
     edit: function edit(object, options) {
         var tasks;
@@ -136,7 +140,7 @@ categories = {
          * @returns {Object} options
          */
         function doQuery(options) {
-            return dataProvider.Category.edit(options.data.categories[0], _.omit(options, ['data']));
+            return dataProvider.Area.edit(options.data.areas[0], _.omit(options, ['data']));
         }
 
         // Push all of our tasks into a `tasks` array in the correct order
@@ -150,12 +154,12 @@ categories = {
         // Pipeline calls each task passing the result of one to be the arguments for the next
         return pipeline(tasks, object, options).then(function formatResponse(result) {
             if (result) {
-                var category = result.toJSON(options);
+                var area = result.toJSON(options);
 
-                return {categories: [category]};
+                return {areas: [area]};
             }
 
-            return Promise.reject(new errors.NotFoundError({message: i18n.t('errors.api.categories.categoryNotFound')}));
+            return Promise.reject(new errors.NotFoundError({message: i18n.t('errors.api.areas.areaNotFound')}));
         });
     },
 
@@ -170,12 +174,12 @@ categories = {
         var tasks;
 
         /**
-         * ### Delete Category
+         * ### Delete Area
          * Make the call to the Model layer
          * @param {Object} options
          */
-        function deleteCategory(options) {
-            return dataProvider.Category.destroy(options).return(null);
+        function deleteArea(options) {
+            return dataProvider.Area.destroy(options).return(null);
         }
 
         // Push all of our tasks into a `tasks` array in the correct order
@@ -183,7 +187,7 @@ categories = {
             utils.validate(docName, {opts: utils.idDefaultOptions}),
             utils.handlePermissions(docName, 'destroy'),
             utils.convertOptions(allowedIncludes),
-            deleteCategory
+            deleteArea
         ];
 
         // Pipeline calls each task passing the result of one to be the arguments for the next
@@ -191,4 +195,4 @@ categories = {
     }
 };
 
-module.exports = categories;
+module.exports = areas;

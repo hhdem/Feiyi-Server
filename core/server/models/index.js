@@ -29,6 +29,7 @@ models = [
     'subscriber',
     'tag',
     'category',
+    'area',
     'user',
     'invite'
 ];

@@ -35,6 +35,8 @@ coreHelpers.post_class = require('./post_class');
 coreHelpers.prev_post = require('./prev_next');
 coreHelpers.next_post = require('./prev_next');
 coreHelpers.tags = require('./tags');
+coreHelpers.categories = require('./categories');
+coreHelpers.areas = require('./areas');
 coreHelpers.title = require('./title');
 coreHelpers.twitter_url = require('./twitter_url');
 coreHelpers.url = require('./url');
@@ -106,6 +108,7 @@ registerHelpers = function () {
     registerThemeHelper('plural', coreHelpers.plural);
     registerThemeHelper('post_class', coreHelpers.post_class);
     registerThemeHelper('tags', coreHelpers.tags);
+    registerThemeHelper('categories', coreHelpers.categories);
     registerThemeHelper('title', coreHelpers.title);
     registerThemeHelper('twitter_url', coreHelpers.twitter_url);
     registerThemeHelper('facebook_url', coreHelpers.facebook_url);

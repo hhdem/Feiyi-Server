@@ -122,12 +122,13 @@ CanThisResult.prototype.buildObjectTypeHandlers = function (objTypes, actType, c
         post:       Models.Post,
         role:       Models.Role,
         user:       Models.User,
+        area:       Models.Area,
         permission: Models.Permission,
         setting:    Models.Settings,
         subscriber: Models.Subscriber
     };
 
-    // Iterate through the object types, i.e. ['post', 'tag', 'user']
+    // Iterate through the object types, i.e. ['post', 'tag', 'user', 'area']
     return _.reduce(objTypes, function (objTypeHandlers, objType) {
         // Grab the TargetModel through the objectTypeModelMap
         var TargetModel = objectTypeModelMap[objType];

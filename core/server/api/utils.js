@@ -169,7 +169,12 @@ utils = {
      * @returns {Function}
      */
     handlePublicPermissions: function handlePublicPermissions(docName, method) {
-        var singular = docName.replace(/s$/, '');
+        var singular = '';
+        if (!!docName && _.endsWith(docName, 'ies')) {
+            singular = docName.replace(/ies$/, 'y');
+        } else {
+            singular = docName.replace(/s$/, '');
+        }
 
         /**
          * Check if this is a public request, if so use the public permissions, otherwise use standard canThis
@@ -198,7 +203,12 @@ utils = {
      * @returns {Function}
      */
     handlePermissions: function handlePermissions(docName, method) {
-        var singular = docName.replace(/s$/, '');
+        var singular = '';
+        if (!!docName && _.endsWith(docName, 'ies')) {
+            singular = docName.replace(/ies$/, 'y');
+        } else {
+            singular = docName.replace(/s$/, '');
+        }
 
         /**
          * ### Handle Permissions
@@ -280,11 +290,23 @@ utils = {
             }));
         }
 
-        // convert author property to author_id to match the name in the database
+        // convert author and area property to author_id and area_id to match the name in the database
         if (docName === 'posts') {
             if (object.posts[0].hasOwnProperty('author')) {
                 object.posts[0].author_id = object.posts[0].author;
                 delete object.posts[0].author;
+            }
+            if (object.posts[0].hasOwnProperty('area')) {
+                object.posts[0].area_id = object.posts[0].area;
+                delete object.posts[0].area;
+            }
+        }
+
+        // convert parent property to parent_id to match the name in the database
+        if (docName === 'areas') {
+            if (object.areas[0].hasOwnProperty('parent')) {
+                object.areas[0].parent_id = object.areas[0].parent;
+                delete object.areas[0].parent;
             }
         }
 
@@ -294,7 +316,7 @@ utils = {
                 return;
             }
 
-            object[docName][index] = _.omitBy(object[docName][index], _.isNull);
+            // object[docName][index] = _.omitBy(object[docName][index], _.isNull);
         });
 
         if (editId && object[docName][0].id && editId !== object[docName][0].id) {

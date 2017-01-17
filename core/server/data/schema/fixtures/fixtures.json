@@ -53,6 +53,22 @@
             ]
         },
         {
+            "name": "Area",
+            "entries": [
+                {
+                    "id": 1,
+                    "name":             "中国",
+                    "code":             "86",
+                    "slug":             "cn",
+                    "description":      null,
+                    "parent_id":        null,
+                    "visibility":       "internal",
+                    "meta_title":       null,
+                    "meta_description": null
+                }
+            ]
+        },
+        {
             "name": "Client",
             "entries": [
                 {
@@ -201,6 +217,56 @@
                     "name": "Delete tags",
                     "action_type": "destroy",
                     "object_type": "tag"
+                },
+                {
+                    "name": "Browse categories",
+                    "action_type": "browse",
+                    "object_type": "category"
+                },
+                {
+                    "name": "Read categories",
+                    "action_type": "read",
+                    "object_type": "category"
+                },
+                {
+                    "name": "Edit categories",
+                    "action_type": "edit",
+                    "object_type": "category"
+                },
+                {
+                    "name": "Add categories",
+                    "action_type": "add",
+                    "object_type": "category"
+                },
+                {
+                    "name": "Delete categories",
+                    "action_type": "destroy",
+                    "object_type": "category"
+                },
+                {
+                    "name": "Browse areas",
+                    "action_type": "browse",
+                    "object_type": "area"
+                },
+                {
+                    "name": "Read areas",
+                    "action_type": "read",
+                    "object_type": "area"
+                },
+                {
+                    "name": "Edit areas",
+                    "action_type": "edit",
+                    "object_type": "area"
+                },
+                {
+                    "name": "Add areas",
+                    "action_type": "add",
+                    "object_type": "area"
+                },
+                {
+                    "name": "Delete areas",
+                    "action_type": "destroy",
+                    "object_type": "area"
                 },
                 {
                     "name": "Browse themes",
@@ -373,6 +439,8 @@
                     "setting": "all",
                     "slug": "all",
                     "tag": "all",
+                    "category": "all",
+                    "area": "all",
                     "theme": "all",
                     "user": "all",
                     "role": "all",
@@ -385,6 +453,8 @@
                     "setting": ["browse", "read"],
                     "slug": "all",
                     "tag": "all",
+                    "category": "all",
+                    "area": "all",
                     "user": "all",
                     "role": "all",
                     "client": "all",

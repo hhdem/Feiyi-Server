@@ -400,12 +400,16 @@ Post = ghostBookshelf.Model.extend({
         return this.belongsToMany('Tag').withPivot('sort_order').query('orderBy', 'sort_order', 'ASC');
     },
 
+    area: function area() {
+        return this.belongsTo('Area', 'area_id');
+    },
+
     fields: function fields() {
         return this.morphMany('AppField', 'relatable');
     },
 
     defaultColumnsToFetch: function defaultColumnsToFetch() {
-        return ['id', 'published_at', 'slug', 'author_id'];
+        return ['id', 'published_at', 'slug', 'author_id', 'area_id'];
     },
 
     toJSON: function toJSON(options) {
@@ -416,6 +420,11 @@ Post = ghostBookshelf.Model.extend({
         if (!options.columns || (options.columns && options.columns.indexOf('author') > -1)) {
             attrs.author = attrs.author || attrs.author_id;
             delete attrs.author_id;
+        }
+
+        if (!options.columns || (options.columns && options.columns.indexOf('area') > -1)) {
+            attrs.area = attrs.area || attrs.area_id;
+            delete attrs.area_id;
         }
 
         if (!options.columns || (options.columns && options.columns.indexOf('url') > -1)) {

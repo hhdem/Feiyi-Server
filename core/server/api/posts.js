@@ -10,7 +10,7 @@ var Promise         = require('bluebird'),
 
     docName         = 'posts',
     allowedIncludes = [
-        'created_by', 'updated_by', 'published_by', 'author', 'tags', 'fields',
+        'created_by', 'updated_by', 'published_by', 'author', 'tags', 'area', 'categories', 'fields',
         'next', 'previous', 'next.author', 'next.tags', 'previous.author', 'previous.tags'
     ],
     posts;

@@ -11,7 +11,7 @@ var debug = require('debug')('ghost:admin'),
     checkSSL = require('../middleware/check-ssl'),
     errorHandler = require('../middleware//error-handler'),
     maintenance = require('../middleware/maintenance'),
-    prettyURLs = require('../middleware//pretty-urls'),
+    prettyURLs = require('../middleware/pretty-urls'),
     serveStatic = require('express').static,
     utils = require('../utils');
 

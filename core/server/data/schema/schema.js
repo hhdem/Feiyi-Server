@@ -17,6 +17,7 @@ module.exports = {
         meta_title: {type: 'string', maxlength: 150, nullable: true},
         meta_description: {type: 'string', maxlength: 200, nullable: true},
         author_id: {type: 'string', nullable: false},
+        area_id: {type: 'string', nullable: true},
         created_at: {type: 'dateTime', nullable: false},
         created_by: {type: 'string', nullable: false},
         updated_at: {type: 'dateTime', nullable: true},
@@ -141,6 +142,28 @@ module.exports = {
         id: {type: 'string', nullable: false, primary: true},
         post_id: {type: 'string', nullable: false, references: 'posts.id'},
         category_id: {type: 'string', nullable: false, references: 'categories.id'},
+        sort_order: {type: 'integer', nullable: false, unsigned: true, defaultTo: 0}
+    },
+    areas: {
+        id: {type: 'string', nullable: false, primary: true},
+        code: {type: 'string', nullable: false, unique: true},
+        name: {type: 'string', maxlength: 150, nullable: false, unique: true, validations: {matches: /^([^,]|$)/}},
+        slug: {type: 'string', maxlength: 150, nullable: false, unique: true},
+        description: {type: 'string', maxlength: 200, nullable: true},
+        image: {type: 'text', maxlength: 2000, nullable: true},
+        parent_id: {type: 'string', nullable: true, references: 'areas.id'},
+        visibility: {type: 'string', maxlength: 150, nullable: false, defaultTo: 'public', validations: {isIn: [['public', 'internal']]}},
+        meta_title: {type: 'string', maxlength: 150, nullable: true},
+        meta_description: {type: 'string', maxlength: 200, nullable: true},
+        created_at: {type: 'dateTime', nullable: false},
+        created_by: {type: 'string', nullable: false},
+        updated_at: {type: 'dateTime', nullable: true},
+        updated_by: {type: 'string', nullable: true}
+    },
+    posts_areas: {
+        id: {type: 'string', nullable: false, primary: true},
+        post_id: {type: 'string', nullable: false, references: 'posts.id'},
+        area_id: {type: 'string', nullable: false, references: 'areas.id'},
         sort_order: {type: 'integer', nullable: false, unsigned: true, defaultTo: 0}
     },
     apps: {

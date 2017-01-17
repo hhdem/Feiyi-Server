@@ -104,6 +104,22 @@ function apiRoutes() {
     apiRouter.put('/tags/:id', authenticatePrivate, api.http(api.tags.edit));
     apiRouter.del('/tags/:id', authenticatePrivate, api.http(api.tags.destroy));
 
+    // ## Categories
+    apiRouter.get('/categories', authenticatePublic, api.http(api.categories.browse));
+    apiRouter.get('/categories/:id', authenticatePublic, api.http(api.categories.read));
+    apiRouter.get('/categories/slug/:slug', authenticatePublic, api.http(api.categories.read));
+    apiRouter.post('/categories', authenticatePrivate, api.http(api.categories.add));
+    apiRouter.put('/categories/:id', authenticatePrivate, api.http(api.categories.edit));
+    apiRouter.del('/categories/:id', authenticatePrivate, api.http(api.categories.destroy));
+
+    // ## Areas
+    apiRouter.get('/areas', authenticatePublic, api.http(api.areas.browse));
+    apiRouter.get('/areas/:id', authenticatePublic, api.http(api.areas.read));
+    apiRouter.get('/areas/slug/:slug', authenticatePublic, api.http(api.areas.read));
+    apiRouter.post('/areas', authenticatePrivate, api.http(api.areas.add));
+    apiRouter.put('/areas/:id', authenticatePrivate, api.http(api.areas.edit));
+    apiRouter.del('/areas/:id', authenticatePrivate, api.http(api.areas.destroy));
+
     // ## Subscribers
     apiRouter.get('/subscribers', labs.subscribers, authenticatePrivate, api.http(api.subscribers.browse));
     apiRouter.get('/subscribers/csv', labs.subscribers, authenticatePrivate, api.http(api.subscribers.exportCSV));
