@@ -158,7 +158,9 @@ module.exports = {
         created_at: {type: 'dateTime', nullable: false},
         created_by: {type: 'string', nullable: false},
         updated_at: {type: 'dateTime', nullable: true},
-        updated_by: {type: 'string', nullable: true}
+        updated_by: {type: 'string', nullable: true},
+        lat: {type: 'string', maxlength: 15, nullable: true},
+        lng: {type: 'string', maxlength: 15, nullable: true}
     },
     posts_areas: {
         id: {type: 'string', nullable: false, primary: true},

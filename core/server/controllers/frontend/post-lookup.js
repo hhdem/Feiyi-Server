@@ -51,7 +51,7 @@ function postLookup(postUrl) {
     // Sanitize params we're going to use to lookup the post.
     params = _.pick(params, 'slug', 'id');
     // Add author & tag
-    params.include = 'author,tags';
+    params.include = 'author,tags,area';
 
     // Query database to find post
     return api.posts.read(params).then(function then(result) {

@@ -359,6 +359,9 @@
             "tags": {
                 "tagNotFound": "Tag not found."
             },
+            "areas": {
+                "areaNotFound": "Area not found."
+            },
             "themes": {
                 "noPermissionToBrowseThemes": "You do not have permission to browse themes.",
                 "noPermissionToEditThemes": "You do not have permission to edit themes.",

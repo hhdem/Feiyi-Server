@@ -27,7 +27,7 @@
     },
     "slugs": {
         "reserved": ["admin", "app", "apps", "archive", "archives", "categories",
-            "category", "dashboard", "feed", "ghost-admin", "login", "logout",
+            "category", "areas", "area", "dashboard", "feed", "ghost-admin", "login", "logout",
             "page", "pages", "post", "posts", "public", "register", "setup",
             "signin", "signout", "signup", "user", "users", "wp-admin", "wp-login"],
         "protected": ["ghost", "rss", "amp"]
@@ -72,7 +72,7 @@
         "options": {
             "auth": {
                 "user": "hhdem@qq.com",
-                "pass": "5213songshanshan"
+                "pass": ""
             }
         }
     }
